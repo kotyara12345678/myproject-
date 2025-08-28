@@ -3,4 +3,8 @@ from . import views
 
 app_name = 'index'
 
-path('index/', views.index_page, name='index'), 
+urlpatterns = [
+    
+path('', views.index_page, name='index'), 
+
+]
