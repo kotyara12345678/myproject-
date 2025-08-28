@@ -15,10 +15,6 @@
                 {% if article.image %}
                     <img src="{{ article.image.url }}" alt="{{ article.title }}">
                 {% endif %}
-              <!--  <p>
-                    {{ article.full_text|truncatewords:30 }} 
-                    <a href="{% url 'article_detail' article.pk %}">Читать далее</a>
-                </p>-->
             </div>
         {% endfor %}
     {% else %}
