@@ -21,5 +21,4 @@ class coments:
         def __str__(self):
              return self.title
          
-          #
-class likes:
+          #КЛАСС ЛАЙКИ .....

@@ -1,11 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>главная</title>
-</head>
-<body>
-    <h1>паша лох</h1>
-</body>
-</html>
+{% extends 'index/layout.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Новости</h1>
+
+    {% if articles %}
+        {% for article in articles %}
+            <div class="news-card">
+                <h2>{{ article.title }}</h2>
+                <p><strong>Анонс:</strong> {{ article.anons }}</p>
+                <p><strong>дата:</strong> {{ article.data|date:"d.m.Y H:i" }}</p>
+                {% if article.image %}
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                {% endif %}
+              <!--  <p>
+                    {{ article.full_text|truncatewords:30 }} 
+                    <a href="{% url 'article_detail' article.pk %}">Читать далее</a>
+                </p>-->
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-news">Пока нет новостей</p>
+    {% endif %}
+</div>
+{% endblock %}
