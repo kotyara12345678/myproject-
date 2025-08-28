@@ -13,4 +13,13 @@ class Articles(models.Model):
     
    #КЛАСС КОМЕНТАРИИ 
 class coments:
-    
+        title = models.CharField('Заголовок', max_length=100)
+        full_text = models.TextField('Статья') # текст статьи
+        data = models.DateTimeField('Дата публикации', default=timezone.now) # дата
+        
+        
+        def __str__(self):
+             return self.title
+         
+          #
+class likes:
