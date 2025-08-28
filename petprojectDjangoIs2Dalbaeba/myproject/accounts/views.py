@@ -49,7 +49,3 @@ def profile_page(request):
 def logout_page(request):
     request.session.flush()
     return redirect('accounts:login')
-
-
-def simple_view(request):
-    return None
