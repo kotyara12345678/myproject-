@@ -1,0 +1,67 @@
+{% extends 'index/layout.html' %}
+
+{% block title %}Создать статью{% endblock %}
+
+{% block content %}
+<div class="create-article-container">
+    <h1>Создать новую статью</h1>
+
+    <form id="create-article-form">
+        <input type="text" name="title" placeholder="Заголовок" required><br><br>
+        <input type="text" name="anons" placeholder="Краткий анонс" required><br><br>
+        <textarea name="full_text" placeholder="Полный текст статьи" required></textarea><br><br>
+        <input type="file" name="image"><br><br>
+        <button type="submit">Создать статью</button>
+    </form>
+
+    <p id="message" style="color: green;"></p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('create-article-form');
+    var message = document.getElementById('message');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Создаём FormData
+        var formData = new FormData();
+        formData.append('title', form.title.value);
+        formData.append('anons', form.anons.value);
+        formData.append('full_text', form.full_text.value);
+
+        if (form.image.files.length > 0) {
+            formData.append('image', form.image.files[0]);
+        }
+
+        // Берём JWT токен из localStorage
+        var token = localStorage.getItem('jwt');
+
+        fetch('/index/create/', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            body: formData
+        })
+        .then(function(response) {
+            return response.json().then(function(data) {
+                if (response.ok) {
+                    message.style.color = 'green';
+                    message.innerText = 'Статья успешно создана!';
+                    form.reset();
+                } else {
+                    message.style.color = 'red';
+                    message.innerText = JSON.stringify(data);
+                }
+            });
+        })
+        .catch(function(err) {
+            message.style.color = 'red';
+            message.innerText = 'Ошибка при создании статьи: ' + err;
+        });
+    });
+});
+</script>
+{% endblock %}

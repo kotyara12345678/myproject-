@@ -83,4 +83,3 @@ def simple_view(request):
             pass  # токен невалидный или пользователь не найден
 
     return redirect('accounts:register')  # нет токена или ошибка
-

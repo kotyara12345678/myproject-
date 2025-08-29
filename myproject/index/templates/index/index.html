@@ -6,8 +6,11 @@
 <div class="features">
     <h1>Новости</h1>
 
-    {% if articles %}
-        {% for article in articles %}
+    <!-- Ссылка на создание статьи -->
+    <p><a href="{% url 'index:create_article_page' %}" class="btn btn-primary">Создать новую статью</a></p>
+
+    {% if article %}
+        {% for article in article %}
             <div class="news-card">
                 <h2>{{ article.title }}</h2>
                 <p><strong>Анонс:</strong> {{ article.anons }}</p>
