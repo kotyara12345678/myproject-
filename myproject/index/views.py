@@ -7,4 +7,4 @@ def index_page(request):
 
 def article_detail(request, pk):
     article = get_object_or_404(Articles, pk=pk)
-    return render(request, 'news/article_detail.html', {'article': article})
+    return render(request, 'index/article_detail.html', {'article': article})
