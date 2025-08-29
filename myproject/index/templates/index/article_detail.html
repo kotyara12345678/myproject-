@@ -1,0 +1,18 @@
+{% extends 'index/layout.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<div class="news-article">
+    <h1>{{ article.title }}</h1>
+    <p><strong>Дата:</strong> {{ article.data|date:"d.m.Y H:i" }}</p>
+
+    {% if article.image %}
+        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="news-article-img">
+    {% endif %}
+
+    <p>{{ article.full_text }}</p>
+
+    <p><a href="{% url index' %}" class="back-link">← Назад к новостям</a></p>
+</div>
+{% endblock %}
